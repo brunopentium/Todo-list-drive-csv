@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskMaster Drive CSV</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="config.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark">TM</span>
+        <div>
+          <h1>TaskMaster</h1>
+          <p>Drive CSV</p>
+        </div>
+      </div>
+
+      <button id="connectDriveBtn" class="primary-btn">Conectar Drive</button>
+      <button id="createCsvBtn" class="secondary-btn" disabled>Criar CSV no Drive</button>
+      <button id="loadCsvBtn" class="secondary-btn" disabled>Carregar do Drive</button>
+      <button id="saveCsvBtn" class="success-btn" disabled>Salvar no Drive</button>
+      <button id="importLocalBtn" class="secondary-btn">Importar CSV local</button>
+      <button id="exportLocalBtn" class="secondary-btn">Exportar CSV</button>
+      <input id="localCsvInput" type="file" accept=".csv,text/csv" hidden>
+
+      <div class="file-panel">
+        <label for="fileIdInput">Arquivo CSV</label>
+        <input id="fileIdInput" type="text" placeholder="ID do arquivo no Drive">
+        <button id="openByIdBtn" class="ghost-btn" disabled>Abrir por ID</button>
+        <p id="fileStatus">Nenhum arquivo conectado.</p>
+        <p id="saveStatus">Sem alterações pendentes.</p>
+      </div>
+
+      <div class="stats">
+        <div><span>Aberta</span><strong id="openCount">0</strong></div>
+        <div><span>Reserva</span><strong id="reserveCount">0</strong></div>
+        <div><span>Hoje</span><strong id="todayCount">0</strong></div>
+        <div><span>Atrasadas</span><strong id="lateCount">0</strong></div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="toolbar">
+        <div class="filters">
+          <select id="projectFilter"></select>
+          <select id="statusFilter">
+            <option value="Aberta">Aberta</option>
+            <option value="Todos">Todos Status</option>
+            <option value="Em Andamento">Em Andamento</option>
+            <option value="Reserva">Reserva</option>
+            <option value="Recorrente">Recorrente</option>
+            <option value="Concluída">Concluída</option>
+            <option value="Cancelada">Cancelada</option>
+          </select>
+          <input id="searchInput" type="search" placeholder="Buscar tarefa">
+        </div>
+        <button id="newTaskBtn" class="primary-btn">Nova Tarefa</button>
+      </header>
+
+      <section id="taskList" class="task-list"></section>
+    </main>
+  </div>
+
+  <dialog id="taskDialog" class="task-dialog">
+    <form id="taskForm" method="dialog">
+      <header>
+        <h2 id="dialogTitle">Nova Tarefa</h2>
+        <button type="button" id="closeDialogBtn" class="icon-btn">x</button>
+      </header>
+
+      <input type="hidden" id="taskId">
+
+      <label>
+        Título
+        <input id="taskTitle" required>
+      </label>
+
+      <div class="form-grid">
+        <label>
+          Projeto
+          <input id="taskProject" list="projectOptions" required>
+          <datalist id="projectOptions"></datalist>
+        </label>
+
+        <label>
+          Status
+          <select id="taskStatus">
+            <option>Em Andamento</option>
+            <option>Reserva</option>
+            <option>Recorrente</option>
+            <option>Concluída</option>
+            <option>Cancelada</option>
+          </select>
+        </label>
+
+        <label>
+          Data execução
+          <input id="taskDate" type="date">
+        </label>
+
+        <label>
+          Deadline
+          <input id="taskDeadline" type="date">
+        </label>
+
+        <label>
+          Prioridade
+          <input id="taskPriority" type="number" min="1" max="5" value="3">
+        </label>
+
+        <label>
+          Dificuldade
+          <input id="taskDifficulty" type="number" min="1" max="5" value="3">
+        </label>
+      </div>
+
+      <label>
+        Observações
+        <textarea id="taskNotes" rows="4"></textarea>
+      </label>
+
+      <footer>
+        <button type="button" id="deleteTaskBtn" class="danger-btn">Excluir</button>
+        <span></span>
+        <button type="button" id="cancelDialogBtn" class="ghost-btn">Cancelar</button>
+        <button type="submit" class="success-btn">Salvar</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
