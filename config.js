@@ -1,5 +1,5 @@
 window.TASKMASTER_CONFIG = {
-  googleClientId: 'COLE_SEU_CLIENT_ID_AQUI',
+  googleClientId: '954630858781-gqjvffl5kbaeusetm22ksfe5cvqaufnr.apps.googleusercontent.com',
   driveScope: 'https://www.googleapis.com/auth/drive.file',
   defaultCsvName: 'taskmaster-drive.csv'
 };
