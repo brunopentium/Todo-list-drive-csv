@@ -1,0 +1,3 @@
+id,title,date,deadline,status,priority,difficulty,project,notes,tags,subtasks,recurrence,alertLevel,metadata
+demo-1,Revisar tarefas da semana,2026-06-23,2026-06-24,Em Andamento,3,2,R&D,Exemplo de tarefa ativa,,[],"{""frequency"":""Nenhuma"",""daysOfWeek"":[],""daysOfMonth"":[]}","",{}
+demo-2,Ideia para segundo momento,,,Reserva,2,1,R&D,Exemplo de tarefa em reserva,,[],"{""frequency"":""Nenhuma"",""daysOfWeek"":[],""daysOfMonth"":[]}","",{}
